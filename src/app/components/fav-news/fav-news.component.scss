@@ -1,0 +1,16 @@
+main{
+    margin-top: 5rem;
+    display:flex;
+    flex-direction: column;
+    justify-content:center;
+    align-items:center;
+   
+    
+}
+.news-element{
+    border: 1px solid black ;
+    margin: 1rem;
+    padding: 1rem;
+    background-color:rgb(134, 220, 247);
+    list-style: none;
+}

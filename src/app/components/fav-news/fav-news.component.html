@@ -1,0 +1,10 @@
+<main>
+    <h2> Saved News</h2><ul>
+    <li *ngFor="let headline of savedNews" class="news-element">
+        <h2>{{ headline.title }}</h2>
+        <p>{{ headline.summary }}</p>
+        <a href="{{ headline.link }}">Link</a>
+        <span class="fa fa-star"></span>
+      </li>
+</ul></main>
+

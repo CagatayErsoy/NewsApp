@@ -1,0 +1,43 @@
+<ng-container>
+  <section class="modal" *ngIf="this.modal">
+    <i class="fa fa-window-close" aria-hidden="true" (click)="this.modal=false"></i>
+    <h3>You need to subscribe for paid plan</h3>
+    <p>Please select your favorite Web language:</p>
+    <div class="radioButtons" >
+      <input type="radio" id="free" name="option" value="USER" (change)="getUserRole($event.currentTarget)"/>
+      <label for="free">free</label><br />
+      <input type="radio" id="regular" name="option" value="ADMIN" (change)="getUserRole($event.currentTarget)"/>
+      <label for="regular">regular</label><br />
+      <input type="radio" id="premium" name="option" value="SUPERUSER" (change)="getUserRole($event.currentTarget)"/>
+      <label for="premium">premium</label>
+     
+    </div>
+
+    <p>Please enter your password for chancing your plan</p>
+    <input type="text" (input)="password" />
+    <button (click)="chanceUserRole()"> chance plan</button>
+  </section>
+</ng-container>
+
+<main>
+  <section class="search-box">
+    <input type="text" class="seach" [(ngModel)]="search" />
+    <button (click)="clickSearch()">search</button>
+  </section>
+  <span (click)="clickFavNews()">Saved News</span>
+  <ul
+    class="search-results"
+    infiniteScroll
+    [infiniteScrollDistance]="0"
+    [infiniteScrollThrottle]="50"
+    (scrolled)="onScroll()"
+  >
+    <li *ngFor="let headline of news" class="news-element">
+      <h2>{{ headline.title }}</h2>
+      <p>{{ headline.summary }}</p>
+      <a href="{{ headline.link }}">Link</a>
+      <span class="fa fa-star" (click)="setFavorites(headline)"></span>
+    </li>
+  </ul>
+  working
+</main>

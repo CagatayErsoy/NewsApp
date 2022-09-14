@@ -1,0 +1,25 @@
+:host ::ng-deep{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    margin: 10rem;
+    form{
+        display:flex;
+        flex-direction:column;
+        justify-content:center;
+        align-items:center;
+        border: 2px solid  black;
+        padding:8rem;
+        gap:1rem;
+        .container {
+            display:flex;
+            flex-direction:column;
+            gap: 1rem;
+            justify-content:center;
+            align-items:center;
+        }
+        input{
+            font-size:1.5rem;
+        }
+    }
+}
