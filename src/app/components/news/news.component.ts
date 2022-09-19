@@ -4,6 +4,7 @@ import { UsersService } from 'src/app/services/users.service';
 import { Router } from '@angular/router';
 import { User } from 'src/app/interfaces/user';
 import jwt_decode from 'jwt-decode';
+import { fakeAsync } from '@angular/core/testing';
 
 
 
@@ -13,11 +14,12 @@ import jwt_decode from 'jwt-decode';
   styleUrls: ['./news.component.scss']
 })
 export class NewsComponent implements OnInit {
-  @Input() password:string=""
+  password:string=""
   search: string=""
   public modal=false
   private userRole:any
   private currentUser:any
+  private loginUser:any
   news:any
   page=10;
   constructor(
@@ -54,25 +56,43 @@ export class NewsComponent implements OnInit {
     console.log(this.userRole)
   }
   chanceUserRole(){
-    console.log(this.password)
+    
     this.currentUser=jwt_decode(localStorage.getItem("accessToken")!)
-   
-    this.userService.chanceRole( {
-      username:this.currentUser.username,
-      password:'123',
+    this.loginUser={
       email:this.currentUser.email,
-      role:this.userRole,
-      tmdb_key:this.currentUser.tmdb_key
-      
-      
-    }).subscribe(console.log)
+      password:this.password
+    }
+    console.log(this.loginUser)
+    this.userService.login(this.loginUser).subscribe({
+     
+      next:(val)=>{
+        this.userService.chanceRole( {
+          username:this.currentUser.username,
+          password:this.password,
+          email:this.currentUser.email,
+          role:this.userRole,
+          tmdb_key:this.currentUser.tmdb_key
+          
+          
+        }).subscribe(res=>{
+           this.route.navigate(['fav-news'])
+          this.password=''
+        })
+        
+      },
+      error:(e)=>{
+        console.log(e.error)
+      },
+      complete:()=>{
+        console.log('complete')
+        
+      }
+    })
+   
     
   }
 
-  navigateFavNews(){
-    
-    this.route.navigate(['/fav-news'])
-  }
+  
   
 
 }

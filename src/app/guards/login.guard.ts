@@ -20,7 +20,7 @@ export class LoginGuard implements CanActivate {
     state: RouterStateSnapshot): Observable<boolean | UrlTree> | Promise<boolean | UrlTree> | boolean | UrlTree {
       return  (()=>{
         this.userService.userAuthInfo$.subscribe(user=> {this.userData={...user}})
-        this.accessToken=localStorage.getItem('accessToken')
+        this.accessToken=localStorage.getItem('accessToken')!
         this.dataFromLocal=jwt_decode(this.accessToken)
         if(this.userData.email){
           return true
