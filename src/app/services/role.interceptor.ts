@@ -16,10 +16,12 @@ export class RoleInterceptor implements HttpInterceptor {
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
   this.currentUser=localStorage.getItem('accessToken')!
    if(request.url.startsWith(`http://localhost:4231/auth/userupdate`) || request.url.startsWith(`http://localhost:4231/auth/refres-token`)){
-    request=request.clone({
+    console.log("intercepter here")
+   request=request.clone({
       setHeaders:{
         Authorization: `Bearer ${this.currentUser}`
       }
+      
     })
    }
     return next.handle(request);

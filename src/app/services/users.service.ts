@@ -64,7 +64,8 @@ export class UsersService {
       {}
     ).pipe(
       tap(({ accessToken }) => {
-        console.log("here")
+        console.log(jwt_decode(accessToken))
+        localStorage.setItem('accessToken', accessToken)
         const { username, id, email, role, tmdb_key }: User = jwt_decode(accessToken);
 
         this.userInfo = {

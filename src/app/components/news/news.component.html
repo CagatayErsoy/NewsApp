@@ -57,7 +57,7 @@
       <h2>{{ headline.title }}</h2>
       <p>{{ headline.summary }}</p>
       <a href="{{ headline.link }}">Link</a>
-      <span class="fa fa-star" (click)="setFavorites(headline)"></span>
+      <mat-icon  (click)="setFavorites(headline, $event.target)">star</mat-icon>
     </li>
   </ul>
   working
